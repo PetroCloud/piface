@@ -111,9 +111,9 @@ int pfio_init(void)
     spi_write(GPPUB, 0xFF); // turn on port B pullups
 
     // initialise all outputs to 0
-    int i;
-    for (i = 1; i <= 8; i++)
-        pfio_digital_write(i, 0);
+    // int i;
+    // for (i = 1; i <= 8; i++)
+    //     pfio_digital_write(i, 0);
 
     return 0;
 }
@@ -164,7 +164,7 @@ uint8_t pfio_read_input(void)
     // confusing developers.
     return spi_read(INPUT_PORT) ^ 0xFF;
 }
-    
+
 uint8_t pfio_read_output(void)
 {
     return spi_read(OUTPUT_PORT);
@@ -202,7 +202,7 @@ uint8_t pfio_get_pin_number(uint8_t bit_pattern)
 static void spi_transfer(uint8_t * txbuffer, uint8_t * rxbuffer)
 {
     // set up some transfer information
-    struct spi_ioc_transfer transfer_buffer = 
+    struct spi_ioc_transfer transfer_buffer =
     {
         .tx_buf = (unsigned long) txbuffer,
         .rx_buf = (unsigned long) rxbuffer,
